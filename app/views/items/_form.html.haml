@@ -1,0 +1,10 @@
+= simple_form_for(@item, :defaults => { :input_html => { :class => 'input-xlarge' } }) do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.input :name
+    = f.input :aliases, hint: 'Comma-separated'
+    = f.input :weight, hint: 'In KG'
+
+  .form-actions
+    = f.button :submit, :class => "btn-primary"

@@ -1,0 +1,16 @@
+.page-header
+  = link_to items_path, :class => 'btn' do
+    %i.icon-list-alt
+    Back
+  = link_to edit_item_path(@item), :class => 'btn btn-primary' do
+    %i.icon-pencil.icon-white
+    Edit
+  %h1 Listing items
+
+%dl
+  %dt Name:
+  %dd= @item.name
+  %dt Aliases:
+  %dd= @item.aliases
+  %dt Weight:
+  %dd= "#{@item.weight} kg"
