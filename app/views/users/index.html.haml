@@ -1,0 +1,23 @@
+.page-header
+  = link_to new_user_path, :class => 'btn btn-primary' do
+    %i.icon-plus.icon-white
+    New User
+  %h1 Listing users
+
+%table.table.table-bordered.table-striped
+  %thead
+    %tr
+      %th Email
+      %th Password
+      %th
+      %th
+      %th
+
+  %tbody
+    - @users.each do |user|
+      %tr
+        %td= user.email
+        %td= user.password
+        %td= link_to 'Show', user
+        %td= link_to 'Edit', edit_user_path(user)
+        %td= link_to 'Destroy', user, :confirm => 'Are you sure?', :method => :delete
