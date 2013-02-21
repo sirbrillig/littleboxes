@@ -2,9 +2,9 @@
   = f.error_notification
 
   .form-inputs
-    = f.input :name
+    = f.input :name, autofocus: true
     = f.input :aliases, hint: 'Comma-separated'
-    = f.input :weight, hint: 'In KG'
+    = f.input :weight, hint: 'In Grams'
 
   .form-actions
     = f.button :submit, :class => "btn-primary"

@@ -80,4 +80,17 @@ class ItemsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  def search
+    @query = params[:item][:query] if params and params[:item]
+    if @query
+      @items = Item.where("name LIKE ? or aliases LIKE ?", "%#{@query}%", "%#{@query}%")
+    else
+      @items = Item.all
+    end
+    respond_to do |format|
+      format.html
+      format.json { render json: @items }
+    end
+  end
 end
