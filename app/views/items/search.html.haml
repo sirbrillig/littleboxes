@@ -7,23 +7,26 @@
       = f.search_field :query, value: @query, autofocus: true, class: "search-query"
       = f.submit "Search", :class => "btn btn-primary"
 
-%table.table.table-bordered.table-striped
-  %thead
-    %tr
-      %th Name
-      %th Aliases
-      %th Weight
-      %th
-      %th
-      %th
-
-  %tbody
-    - @items.each do |item|
+- if @items.empty?
+  %h1 No matches
+- else
+  %table.table.table-bordered.table-striped
+    %thead
       %tr
-        %td= item.name
-        %td= item.aliases
-        %td= "#{item.weight} kg"
-        %td= link_to 'Show', item
-        %td= link_to 'Edit', edit_item_path(item)
-        %td= link_to 'Destroy', item, :confirm => 'Are you sure?', :method => :delete
+        %th Name
+        %th Aliases
+        %th Weight
+        %th
+        %th
+        %th
+
+    %tbody
+      - @items.each do |item|
+        %tr
+          %td= item.name
+          %td= item.aliases
+          %td= "#{item.weight} kg"
+          %td= link_to 'Show', item
+          %td= link_to 'Edit', edit_item_path(item)
+          %td= link_to 'Destroy', item, :confirm => 'Are you sure?', :method => :delete
 

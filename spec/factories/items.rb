@@ -2,8 +2,8 @@
 
 FactoryGirl.define do
   factory :item do
-    name "MyString"
-    aliases "MyString"
+    name "My Item"
+    aliases "Foo, Bar"
     weight 1
   end
 end
