@@ -39,17 +39,6 @@ class Adjustment < ActiveRecord::Base
 
   private
   def convert_units(number, units)
-    case units
-    when 'g'
-      number.to_i
-    when 'kg'
-      number * 1000
-    when 'lb'
-      number * 453
-    when 'oz'
-      number * 28
-    else
-      nil
-    end
+    return Unit.new("#{number} #{units}").to('g').scalar.to_i
   end
 end
