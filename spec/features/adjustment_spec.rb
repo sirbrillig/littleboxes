@@ -1,20 +1,20 @@
 require 'spec_helper'
 
-describe "The inventory page" do
+describe "The adjustment page" do
   before do
-    visit inventory_index_url
+    visit adjustments_url
   end
 
   it "shows a drop-down for the type of update" do
-    page.should have_select 'Action'
+    page.should have_select 'adjustment[action]'
   end
 
   it "shows an auto-complete field for the item name" do
-    page.should have_field 'name'
+    page.should have_field 'adjustment[name]'
   end
 
   it "shows a field for the update quantity" do
-    page.should have_field 'delta'
+    page.should have_field 'adjustment[delta]'
   end
 
   context "when chosing 'decrement' for an item" do
@@ -22,12 +22,12 @@ describe "The inventory page" do
 
     before do
       select 'Decrement', from: 'Action'
-      fill_in 'name', with: item.name
+      fill_in 'adjustment[name]', with: item.name
     end
 
     context "and entering a number" do
       before do
-        fill_in 'delta', with: 5
+        fill_in 'adjustment[delta]', with: 5
         click_on 'Save'
       end
 
@@ -35,7 +35,7 @@ describe "The inventory page" do
         item.quantity.should eq -5
       end
 
-      it "shows the inventory form again" do
+      it "shows the adjustment form again" do
         page.should have_field 'delta'
       end
 

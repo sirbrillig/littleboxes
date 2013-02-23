@@ -13,7 +13,7 @@ Littleboxes::Application.routes.draw do
     end
   end
 
-  resources :inventory
+  resources :adjustments
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
