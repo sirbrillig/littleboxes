@@ -36,11 +36,68 @@ describe "The adjustment page" do
       end
 
       it "shows the adjustment form again" do
-        page.should have_field 'delta'
+        page.should have_field 'adjustment[delta]'
       end
 
       it "shows the updated quantity in a callout" do
         page.should have_content '-5'
+      end
+    end
+  end
+
+  context "when chosing 'increment' for an item" do
+    let (:item) { FactoryGirl.create(:item) }
+
+    before do
+      select 'Increment', from: 'Action'
+      fill_in 'adjustment[name]', with: item.name
+    end
+
+    context "and entering a number" do
+      before do
+        fill_in 'adjustment[delta]', with: 3
+        click_on 'Save'
+      end
+
+      it "increases the quantity by that number" do
+        item.quantity.should eq 3
+      end
+
+      it "shows the adjustment form again" do
+        page.should have_field 'adjustment[delta]'
+      end
+
+      it "shows the updated quantity in a callout" do
+        page.should have_content '3'
+      end
+    end
+  end
+
+  context "when chosing 'set' for an item" do
+    let (:item) { FactoryGirl.create(:item) }
+
+    before do
+      item.adjustments << Adjustment.create(item: item, delta: 8)
+      select 'Set', from: 'Action'
+      fill_in 'adjustment[name]', with: item.name
+    end
+
+    context "and entering a number" do
+      before do
+        fill_in 'adjustment[delta]', with: 2
+        click_on 'Save'
+      end
+
+      it "resets the quantity to that number" do
+        item.quantity.should eq 2
+      end
+
+      it "shows the adjustment form again" do
+        page.should have_field 'adjustment[delta]'
+      end
+
+      it "shows the updated quantity in a callout" do
+        page.should have_content '2'
       end
     end
   end

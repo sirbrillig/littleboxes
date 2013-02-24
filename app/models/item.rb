@@ -3,7 +3,14 @@ class Item < ActiveRecord::Base
   attr_accessible :aliases, :name, :weight
 
   def quantity
-    total = adjustments.sum(&:delta)
+    total = 0
+    adjustments.each do |a|
+      if a.reset
+        total = a.delta
+      else
+        total += a.delta
+      end
+    end
     total *= weight if weight
     total
   end
