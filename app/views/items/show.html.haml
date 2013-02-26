@@ -13,4 +13,8 @@
   %dt Aliases:
   %dd= @item.aliases
   %dt Weight:
-  %dd= "#{@item.weight} kg"
+  %dd= "#{@item.weight} g"
+  %dt Adjustments:
+  %dd= "#{@item.adjustments.count}"
+  %dt Current Total:
+  %dd= "#{@item.quantity} g"

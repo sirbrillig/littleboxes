@@ -15,3 +15,7 @@
 /tmp
 config/application.yml
 config/database.yml
+
+*~
+*.swp
+*.swo

@@ -1,0 +1,23 @@
+%table.table.table-bordered.table-striped
+  %thead
+    %tr
+      %th Name
+      %th Aliases
+      %th Weight
+      %th Adjustments
+      %th Current Total
+      %th
+      %th
+      %th
+
+  %tbody
+    - @items.each do |item|
+      %tr
+        %td= item.name
+        %td= item.aliases
+        %td= "#{item.weight} g"
+        %td= "#{item.adjustments.count}"
+        %td= "#{item.quantity} g"
+        %td= link_to 'Show', item
+        %td= link_to 'Edit', edit_item_path(item)
+        %td= link_to 'Destroy', item, :confirm => 'Are you sure?', :method => :delete

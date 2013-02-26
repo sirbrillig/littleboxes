@@ -2,6 +2,7 @@
 %ul.nav
   %li= link_to('Search', search_items_path)
   - if user_signed_in?
+    %li= link_to('Update', adjustments_path)
     %li= link_to('Items', items_path)
     %li= link_to('Logout', destroy_user_session_path, :method=>'delete')
     %li= link_to('Edit account', edit_user_registration_path)

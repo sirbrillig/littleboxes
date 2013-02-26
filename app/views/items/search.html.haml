@@ -10,23 +10,4 @@
 - if @items.empty?
   %h1 No matches
 - else
-  %table.table.table-bordered.table-striped
-    %thead
-      %tr
-        %th Name
-        %th Aliases
-        %th Weight
-        %th
-        %th
-        %th
-
-    %tbody
-      - @items.each do |item|
-        %tr
-          %td= item.name
-          %td= item.aliases
-          %td= "#{item.weight} kg"
-          %td= link_to 'Show', item
-          %td= link_to 'Edit', edit_item_path(item)
-          %td= link_to 'Destroy', item, :confirm => 'Are you sure?', :method => :delete
-
+  =render partial: 'list'
