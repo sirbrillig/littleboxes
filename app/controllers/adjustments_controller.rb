@@ -13,11 +13,10 @@ class AdjustmentsController < ApplicationController
     end
 
     item = Item.find_by_name(params[:adjustment][:name]) # FIXME: match partial or alias as well
-    # FIXME: set flash if error
-
-    @adjustment = Adjustment.new(delta: delta, item: item, reset: set_value)
+    return redirect_to adjustments_path, alert: "No item found by name '#{params[:adjustment][:name]}'." unless item
 
     respond_to do |format|
+      @adjustment = Adjustment.new(delta: delta, item: item, reset: set_value)
       if @adjustment.save
         format.html { redirect_to adjustments_url, notice: "#{item.name} quantity was adjusted by #{delta}." }
         format.json { render json: @adjustment, status: :created, location: @adjustment }
