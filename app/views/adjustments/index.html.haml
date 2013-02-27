@@ -6,8 +6,26 @@
 
   .form-inputs
     = f.input :action, collection: ['Decrement', 'Increment', 'Set'], default: 'Decrement'
-    = f.input :name, autofocus: true
+    = f.input :name, style: 'width: 300px;', class: 'select2-offscreen'
     = f.input :delta
 
   .form-actions
     = f.submit "Save", :class => "btn-primary"
+
+:javascript
+  $("#adjustment_name").select2({
+    placeholder: "Search for an Item",
+    minimumInputLength: 2,
+    ajax: { 
+      url: "/items/search.js",
+      dataType: 'json',
+      data: function (term) {
+        return { query: term }
+      },
+      results: function (data, page) {
+        return {results: data};
+      }
+    },
+    formatResult: window.adjustments.itemFormatResult,
+    formatSelection: window.adjustments.itemFormatSelection
+  });

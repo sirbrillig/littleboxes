@@ -5,6 +5,7 @@ class ItemsController < ApplicationController
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @items }
+      format.js { render json: @items }
     end
   end
 
@@ -70,6 +71,7 @@ class ItemsController < ApplicationController
 
   def search
     @query = params[:item][:query] if params and params[:item]
+    @query = params[:query] if params and params[:query]
     if @query
       @items = Item.where("name LIKE ? or aliases LIKE ?", "%#{@query}%", "%#{@query}%")
     else
@@ -78,6 +80,7 @@ class ItemsController < ApplicationController
     respond_to do |format|
       format.html
       format.json { render json: @items }
+      format.js { render json: @items }
     end
   end
 end

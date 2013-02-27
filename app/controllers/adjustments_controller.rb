@@ -13,6 +13,7 @@ class AdjustmentsController < ApplicationController
     end
 
     item = Item.find_by_name(params[:adjustment][:name]) # FIXME: match partial or alias as well
+    item = Item.find_by_id(params[:adjustment][:name].to_i) unless item # Maybe they submitted an ID
     return redirect_to adjustments_path, alert: "No item found by name '#{params[:adjustment][:name]}'." unless item
 
     respond_to do |format|
@@ -21,7 +22,7 @@ class AdjustmentsController < ApplicationController
         format.html { redirect_to adjustments_url, notice: "#{item.name} quantity was adjusted by #{delta}." }
         format.json { render json: @adjustment, status: :created, location: @adjustment }
       else
-        format.html { render action: "index" } # FIXME: set flash error (or done automatically?)
+        format.html { render action: "index" }
         format.json { render json: @adjustment.errors, status: :unprocessable_entity }
       end
     end
