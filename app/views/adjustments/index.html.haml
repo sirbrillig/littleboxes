@@ -6,7 +6,7 @@
 
   .form-inputs
     = f.input :action, collection: ['Decrement', 'Increment', 'Set'], default: 'Decrement'
-    = f.input :name, style: 'width: 300px;', class: 'select2-offscreen'
+    = f.input :name
     = f.input :delta
 
   .form-actions
@@ -29,3 +29,4 @@
     formatResult: window.adjustments.itemFormatResult,
     formatSelection: window.adjustments.itemFormatSelection
   });
+  $("#adjustment_name").focus();
