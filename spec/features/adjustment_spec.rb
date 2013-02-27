@@ -53,7 +53,7 @@ describe "The adjustment page" do
       end
 
       it "decreases the quantity by the gram conversion" do
-        item.quantity.should be_within(MARGIN).of(907)
+        item.quantity.should be_within(MARGIN).of(-907)
       end
 
       it "shows the adjustment form again" do

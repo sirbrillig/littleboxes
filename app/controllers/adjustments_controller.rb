@@ -25,7 +25,7 @@ class AdjustmentsController < ApplicationController
 
     respond_to do |format|
       @adjustment = Adjustment.new(delta: delta, item: item, reset: set_value)
-      @adjustment.convert(params[:adjustment][:delta].to_s) if convert_value
+      @adjustment.convert(delta.to_s) if convert_value
       if @adjustment.save
         format.html { redirect_to adjustments_url, notice: "#{item.name} quantity was adjusted by #{delta}; the new quantity is #{item.quantity}." }
         format.json { render json: @adjustment, status: :created, location: @adjustment }

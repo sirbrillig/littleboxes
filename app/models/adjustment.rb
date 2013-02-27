@@ -16,7 +16,7 @@ class Adjustment < ActiveRecord::Base
     delta_value = nil
 
     if value.is_a? String
-      if value =~ /^\s*([\d\.]+)\s*(\w{1,2})\s*(([\d\.]+)\s*(\w{1,2}))?\s*$/ # number and units
+      if value =~ /^\s*([-?\d\.]+)\s*(\w{1,2})\s*(([\d\.]+)\s*(\w{1,2}))?\s*$/ # number and units
         number, units = $1.to_f, $2.downcase
         sub_number, sub_units = $4.to_f, $5.downcase if $3
         raise "Could not convert string '#{value}'" unless number and units
