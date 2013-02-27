@@ -1,5 +1,7 @@
 require 'spec_helper'
 
+MARGIN = 5
+
 describe "The adjustment page" do
   before do
     visit adjustments_url
@@ -41,6 +43,25 @@ describe "The adjustment page" do
 
       it "shows the updated quantity in a callout" do
         page.should have_content '-5'
+      end
+    end
+
+    context "and entering a number with a lb unit" do
+      before do
+        fill_in 'adjustment[delta]', with: "2 lb"
+        click_on 'Save'
+      end
+
+      it "decreases the quantity by the gram conversion" do
+        item.quantity.should be_within(MARGIN).of(907)
+      end
+
+      it "shows the adjustment form again" do
+        page.should have_field 'adjustment[delta]'
+      end
+
+      it "shows the updated quantity in a callout" do
+        page.should have_content '-2'
       end
     end
   end
