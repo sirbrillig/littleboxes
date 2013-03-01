@@ -122,4 +122,17 @@ describe "The adjustment page" do
       end
     end
   end
+
+  context "when typing the partial name of an item" do
+    let (:item) { FactoryGirl.create(:item, name: 'Foo Bar Baz Item') }
+
+    before do
+      # Note: requires Javascript
+      fill_in 'adjustment[name]', with: item.name.slice(0,3).downcase
+    end
+
+    it "shows the full name of the item" do
+      page.should have_content item.name
+    end
+  end
 end
