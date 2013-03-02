@@ -2,7 +2,7 @@ require 'spec_helper'
 
 MARGIN = 5
 
-describe "The adjustment page" do
+describe "The adjustment page", js: true do
   before do
     visit adjustments_url
   end
@@ -128,6 +128,7 @@ describe "The adjustment page" do
 
     before do
       # Note: requires Javascript
+      page.driver.render "screenshot.png", full: true
       fill_in 'adjustment[name]', with: item.name.slice(0,3).downcase
     end
 

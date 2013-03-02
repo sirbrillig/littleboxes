@@ -8,7 +8,19 @@ require 'capybara/rspec'
 require 'capybara/poltergeist'
 require 'rspec/autorun'
 
-Capybara.javascript_driver = :poltergeist
+Capybara.configure do |config|
+  config.default_driver = :poltergeist
+  config.javascript_driver = :poltergeist
+  config.app_host = 'http://localhost:3000'
+  config.run_server = false
+end
+
+# Capybara.register_driver :poltergeist do |app|
+#   Capybara::Poltergeist::Driver.new(app,
+#     :inspector => '/Applications/Chromium.app/Contents/MacOS/Chromium', # TO USE: page.driver.debug
+#     :window_size => [1280, 1024]
+#   )
+# end
 
 # Requires supporting ruby files with custom matchers and macros, etc,
 # in spec/support/ and its subdirectories.
