@@ -4,7 +4,8 @@ MARGIN = 5
 
 describe "The adjustment page", js: true do
   before do
-    visit adjustments_url
+#     visit adjustments_url
+    visit '/adjustments'
   end
 
   it "shows a drop-down for the type of update" do
@@ -128,7 +129,10 @@ describe "The adjustment page", js: true do
 
     before do
       # Note: requires Javascript
-      page.driver.render "screenshot.png", full: true
+#       page.driver.render "screenshot.png", full: true
+      # Note: this may not work as intended because the field is hidden and then created by select2
+      # see:
+      # http://stackoverflow.com/questions/12771436/how-to-test-a-select2-element-with-capybara-dsl
       fill_in 'adjustment[name]', with: item.name.slice(0,3).downcase
     end
 

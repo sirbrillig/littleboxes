@@ -15,12 +15,11 @@ Capybara.configure do |config|
   config.run_server = false
 end
 
-# Capybara.register_driver :poltergeist do |app|
-#   Capybara::Poltergeist::Driver.new(app,
-#     :inspector => '/Applications/Chromium.app/Contents/MacOS/Chromium', # TO USE: page.driver.debug
-#     :window_size => [1280, 1024]
-#   )
-# end
+Capybara.register_driver :poltergeist do |app|
+  Capybara::Poltergeist::Driver.new(app,
+    :js_errors => false
+  )
+end
 
 # Requires supporting ruby files with custom matchers and macros, etc,
 # in spec/support/ and its subdirectories.
