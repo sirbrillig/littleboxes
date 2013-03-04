@@ -64,4 +64,4 @@ gem "better_errors", ">= 0.3.2", :group => :development
 gem "binding_of_caller", ">= 0.6.8", :group => :development
 gem "ruby-units"
 gem "select2-rails"
-gem "poltergeist", :group => [:development, :test]
+gem "poltergeist", :group => :test
