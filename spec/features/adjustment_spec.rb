@@ -2,9 +2,10 @@ require 'spec_helper'
 
 MARGIN = 5
 
-describe "The adjustment page" do
+describe "The adjustment page", js: true do
   before do
-    visit adjustments_url
+    visit adjustments_path
+#     visit '/adjustments'
   end
 
   it "shows a drop-down for the type of update" do
@@ -24,7 +25,8 @@ describe "The adjustment page" do
 
     before do
       select 'Decrement', from: 'Action'
-      fill_in 'adjustment[name]', with: item.name
+      fill_in_select2 'adjustment_name', with: item.name
+#       fill_in 'adjustment[name]', with: item.name
     end
 
     context "and entering a number" do
@@ -71,7 +73,8 @@ describe "The adjustment page" do
 
     before do
       select 'Increment', from: 'Action'
-      fill_in 'adjustment[name]', with: item.name
+      fill_in_select2 'adjustment_name', with: item.name
+#       fill_in 'adjustment[name]', with: item.name
     end
 
     context "and entering a number" do
@@ -100,7 +103,8 @@ describe "The adjustment page" do
     before do
       item.adjustments << Adjustment.create(item: item, delta: 8)
       select 'Set', from: 'Action'
-      fill_in 'adjustment[name]', with: item.name
+      fill_in_select2 'adjustment_name', with: item.name
+#       fill_in 'adjustment[name]', with: item.name
     end
 
     context "and entering a number" do
@@ -120,6 +124,19 @@ describe "The adjustment page" do
       it "shows the updated quantity in a callout" do
         page.should have_content '2'
       end
+    end
+  end
+
+  context "when typing the partial name of an item" do
+    let (:item) { FactoryGirl.create(:item, name: 'Foo Bar Baz Item') }
+
+    before do
+      fill_in_select2 'adjustment_name', with: item.name.slice(0,3).downcase
+#       fill_in 'adjustment[name]', with: item.name.slice(0,3).downcase
+    end
+
+    it "shows the full name of the item" do
+      page.should have_content item.name
     end
   end
 end

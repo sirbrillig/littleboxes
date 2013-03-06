@@ -7,7 +7,7 @@ describe "Items" do
     let!(:item3) { FactoryGirl.create(:item, name: 'Banannas', aliases: "Platanos", weight: 503) }
 
     before do
-      visit search_items_url
+      visit search_items_path
     end
 
     context "with a non-existant name" do
