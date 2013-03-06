@@ -9,10 +9,10 @@ require 'capybara/poltergeist'
 require 'rspec/autorun'
 
 Capybara.configure do |config|
-  config.default_driver = :poltergeist
-  config.javascript_driver = :poltergeist
-  config.app_host = 'http://localhost:3000'
-  config.run_server = false
+#   config.default_driver = :poltergeist
+#   config.javascript_driver = :poltergeist
+#   config.app_host = 'http://localhost:3000'
+#   config.run_server = false
 end
 
 Capybara.register_driver :poltergeist do |app|

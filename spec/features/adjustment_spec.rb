@@ -25,7 +25,8 @@ describe "The adjustment page", js: true do
 
     before do
       select 'Decrement', from: 'Action'
-      fill_in 'adjustment[name]', with: item.name
+      fill_in_select2 'adjustment_name', with: item.name
+#       fill_in 'adjustment[name]', with: item.name
     end
 
     context "and entering a number" do
@@ -72,7 +73,8 @@ describe "The adjustment page", js: true do
 
     before do
       select 'Increment', from: 'Action'
-      fill_in 'adjustment[name]', with: item.name
+      fill_in_select2 'adjustment_name', with: item.name
+#       fill_in 'adjustment[name]', with: item.name
     end
 
     context "and entering a number" do
@@ -101,7 +103,8 @@ describe "The adjustment page", js: true do
     before do
       item.adjustments << Adjustment.create(item: item, delta: 8)
       select 'Set', from: 'Action'
-      fill_in 'adjustment[name]', with: item.name
+      fill_in_select2 'adjustment_name', with: item.name
+#       fill_in 'adjustment[name]', with: item.name
     end
 
     context "and entering a number" do
@@ -133,7 +136,8 @@ describe "The adjustment page", js: true do
       # Note: this may not work as intended because the field is hidden and then created by select2
       # see:
       # http://stackoverflow.com/questions/12771436/how-to-test-a-select2-element-with-capybara-dsl
-      fill_in 'adjustment[name]', with: item.name.slice(0,3).downcase
+      fill_in_select2 'adjustment_name', with: item.name.slice(0,3).downcase
+#       fill_in 'adjustment[name]', with: item.name.slice(0,3).downcase
     end
 
     it "shows the full name of the item" do
