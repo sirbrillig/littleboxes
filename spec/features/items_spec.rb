@@ -10,7 +10,7 @@ describe "Items" do
       visit search_items_path
     end
 
-    context "with a non-existant name" do
+    context "with a non-existent name" do
       before do
         fill_in 'item[query]', with: 'aljnajfaejkaejdnjand'
         within('.form-search') { click_on 'Search' }
@@ -21,7 +21,7 @@ describe "Items" do
       end
     end
 
-    context "with an existant name" do
+    context "with an existent name" do
       before do
         fill_in 'item[query]', with: item1.name
         within('.form-search') { click_on 'Search' }
@@ -32,7 +32,7 @@ describe "Items" do
       end
     end
 
-    context "with part of an existant name" do
+    context "with part of an existent name" do
       before do
         fill_in 'item[query]', with: item1.name.slice(2, 4)
         within('.form-search') { click_on 'Search' }
@@ -43,7 +43,7 @@ describe "Items" do
       end
     end
 
-    context "with an existant alias" do
+    context "with an existent alias" do
       before do
         fill_in 'item[query]', with: item2.aliases.slice(1, 4)
         within('.form-search') { click_on 'Search' }
